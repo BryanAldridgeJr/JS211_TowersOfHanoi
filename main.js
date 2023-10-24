@@ -7,57 +7,72 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-// An object that represents the three stacks of Towers of Hanoi; 
-  // * each key is an array of Numbers: 
-    // * A is the far-left, 
-    // * B is the middle, 
-    // * C is the far-right stack
-      // * Each number represents the largest to smallest tokens: 
-        // * 4 is the largest, 
-        // * 1 is the smallest
 
 let stacks = {
   a: [4, 3, 2, 1],
   b: [],
-  c: []
+  c: [],
 };
 
-// Start here. What is this function doing?
+//let startStack = "a";
+//let endStack =  "c";
+
+//let startStack = 'a';
+//let endStack = 'c';
+
 const printStacks = () => {
   console.log("a: " + stacks.a);
   console.log("b: " + stacks.b);
   console.log("c: " + stacks.c);
 }
 
-// Next, what do you think this function should do?
-const movePiece = () => {
-  // Your code here
+
+const movePiece = (startStack, endStack) => {
+  if (isLegal(startStack, endStack)) {
+    const disc = stacks[startStack].pop();
+    
+    stacks[endStack].push(disc);
+  } else {
+    console.log("Invalid move! Please try again.");
+  }
 
 }
 
-// Before you move, should you check if the move it actually allowed? Should 3 be able to be stacked on 2
-const isLegal = () => {
-  // Your code here
+const isLegal = (startStack, endStack) => {
+  if (stacks[startStack].length === 0) {
+    return false;
+  }
+  
+  const startDisc = stacks[startStack][stacks[startStack].length - 1];
+  
+  if (!stacks[endStack][0] || startDisc < stacks[endStack][stacks[endStack].length -1]) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
-}
-
-// What is a win in Towers of Hanoi? When should this function run?
 const checkForWin = () => {
-  // Your code here
-
+  if (stacks.b.length === 4 || stacks.c.length === 4 ) {
+    console.log("Winner!");
+    return true;
+  } else {
+    return false;
+  }
 }
 
-// When is this function called? What should it do with its argument?
 const towersOfHanoi = (startStack, endStack) => {
-  // Your code here
-
+  //startStack = parseInt(startStack);
+  //endStack = parseInt(endStack);
+  movePiece(startStack, endStack);
+  checkForWin();
 }
 
 const getPrompt = () => {
   printStacks();
   rl.question('start stack: ', (startStack) => {
     rl.question('end stack: ', (endStack) => {
-      towersOfHanoi(startStack, endStack);
+      towersOfHanoi(startStack.toLowerCase(), endStack.toLowerCase());
       getPrompt();
     });
   });

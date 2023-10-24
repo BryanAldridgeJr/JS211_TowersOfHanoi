@@ -42,17 +42,17 @@
 }
 
 [data-color="green"] {
-  height: 33px;
+  height: 45px;
   background-color: green;
 }
 
 [data-color="red"] {
-  height: 33px;
+  height: 52px;
   background-color: red;
 }
 
 [data-color="yellow"] {
-  height: 33px;
+  height: 60px;
   background-color: yellow;
 }
 
