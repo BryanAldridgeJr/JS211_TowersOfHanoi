@@ -39,24 +39,43 @@
 [data-color="blue"] {
   height: 33px;
   background-color: blue;
+  border-radius: 40%;
 }
 
 [data-color="green"] {
   height: 45px;
   background-color: green;
+  border-radius: 40%;
 }
 
 [data-color="red"] {
   height: 52px;
   background-color: red;
+  border-radius: 40%;
 }
 
 [data-color="yellow"] {
   height: 60px;
   background-color: yellow;
+  border-radius: 40%;
 }
 
 #announce-game-won {
   font-size: 50px;
   text-align: center;
+}
+
+
+html {
+  background-color: black;
+}
+
+body {
+  text-align: center;
+  padding: 3% 3%;
+  font-size: 20pt;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin: 10% 10%;
+  background-color: rgb(155, 154, 163);
+  text-decoration: underline;
 }

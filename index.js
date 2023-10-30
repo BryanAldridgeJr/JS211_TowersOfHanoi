@@ -1,18 +1,14 @@
-// * This js file is incomplete. It will log to the console the elements you click
-    // call another function and set stone. You will have to work through the logic
-    // of the game as you know it from building it in the terminal. Work through the
-    // puzzle slowly, stepping through the flow of logic, and making the game work.
-    // Have fun!!
-// * First run the program in your browser with live server and double-click on the row you'd like to select an element from.
-// * Why are you get a warning in your console? Fix it.
-// * Delete these comment lines!
 
-let stone = null
+let stone = null;
 
-// this function is called when a row is clicked. 
-// Open your inspector tool to see what is being captured and can be used.
+const stacks = {
+  a: [],
+  b: [],
+  c: []
+};
+
 const selectRow = (row) => {
-  const currentRow = row.getAttribute("data-row")
+  const currentRow = row.getAttribute("data-row");
   
   console.log("Yay, we clicked an item", row)
   console.log("Here is the stone's id: ", row.id)
@@ -21,22 +17,86 @@ const selectRow = (row) => {
   pickUpStone(row.id)
 } 
 
-// this function can be called to get the last stone in the stack
-// but there might be something wrong with it...
+function drag(e) {
+  e.dataTransfer.setData("text/plain", e.target.id);
+}
+
+
+function allowDrop(event) {
+  event.preventDefault();
+}
+
+function drop(event) {
+  event.preventDefault();
+  const stoneId = event.dataTransfer.getData("text/plain");
+  dropStone(event.target.id, stoneId);
+}
+
 const pickUpStone = (rowID) => {
   const selectedRow = document.getElementById(rowID);
+
+  if (!selectedRow || !selectedRow.hasChildNodes()) {
+    return;
+  }
+
   stone = selectedRow.removeChild(selectedRow.lastChild);
-  console.log(stone)
+  console.log(`The stone has been picked up: ${stone}`);
 }
 
-// You could use this function to drop the stone but you'll need to toggle between pickUpStone & dropStone
-// Once you figure that out you'll need to figure out if its a legal move...
-// Something like: if(!stone){pickupStone} else{dropStone}
+const dropStone = (rowID, stoneId) => {
+  const selectedRow = document.getElementById(rowID);
+  const stoneElement = document.getElementById(stoneId);
+  
+  if (!selectedRow || !stoneElement) {
+    return;
+  }
 
-const dropStone = (rowID, stone) => {
-  document.getElementById(rowID).appendChild(stone)
-  stone = null
-}
+  const lastStone = selectedRow.lastElementChild;
+  
+  if (!lastStone) {
+    selectedRow.appendChild(stoneElement);
+    checkForWin();
+    return;
+  }
 
-// * Remember you can use your logic from 'main.js' to maintain the rules of the game. But how? Follow the flow of data just like falling dominoes.
+  const endDiscSize = parseInt(lastStone.getAttribute("data-size"));
+  const stoneSize = parseInt(stoneElement.getAttribute("data-size"));
+  
+  if (stoneSize < endDiscSize) {
+    selectedRow.appendChild(stoneElement);
+    checkForWin();
+  }
+};
 
+const checkForWin = () => {
+  const rowB = document.getElementById("b");
+  const rowC = document.getElementById("c");
+
+  if (rowB.childElementCount === 4 || rowC.childElementCount === 4 ) {
+    window.alert("Winner!");
+    //window.location.reload(); 
+  }
+};
+
+
+const towersOfHanoi = () => {
+  const stoneA = document.getElementById("a");
+
+  stoneA.addEventListener("click", () => {
+    dropStone("a", "stoneA");
+    checkForWin();
+  });
+};
+
+
+
+const stoneElements = document.querySelectorAll(".stone");
+stoneElements.forEach((stoneElement) => {
+  stoneElement.addEventListener("dragstart", drag );
+});
+
+const rowElements = document.querySelectorAll(".row");
+rowElements.forEach((rowElement) => {
+  rowElement.addEventListener("dragover", allowDrop);
+  rowElement.addEventListener("drop", drop);
+});

@@ -62,8 +62,6 @@ const checkForWin = () => {
 }
 
 const towersOfHanoi = (startStack, endStack) => {
-  //startStack = parseInt(startStack);
-  //endStack = parseInt(endStack);
   movePiece(startStack, endStack);
   checkForWin();
 }
@@ -83,11 +81,16 @@ const getPrompt = () => {
 if (typeof describe === 'function') {
 
   describe('#towersOfHanoi()', () => {
-    it('should be able to move a block', () => {
+    it('should be able to move a block to B', () => {
       towersOfHanoi('a', 'b');
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
     });
+    it('EXTRA TEST 1: should be able to move a block to C', () => {
+      towersOfHanoi('a', 'c');
+      assert.deepEqual(stacks, { a: [4, 3], b: [1], c: [2] });
+    });
   });
+
 
   describe('#isLegal()', () => {
     it('should not allow an illegal move', () => {
@@ -98,11 +101,27 @@ if (typeof describe === 'function') {
       };
       assert.equal(isLegal('a', 'b'), false);
     });
+    it('EXTRA TEST 2: should not allow an illegal move', () => {
+      stacks = {
+        a: [4, 3, 2],
+        b: [],
+        c: [1]
+      };
+      assert.equal(isLegal('a', 'c'), false);
+    });
     it('should allow a legal move', () => {
       stacks = {
         a: [4, 3, 2, 1],
         b: [],
         c: []
+      };
+      assert.equal(isLegal('a', 'c'), true);
+    });
+    it('EXTRA TEST 3: should allow a legal move', () => {
+      stacks = {
+        a: [],
+        b: [],
+        c: [4, 3, 2, 1]
       };
       assert.equal(isLegal('a', 'c'), true);
     });

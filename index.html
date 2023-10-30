@@ -8,13 +8,13 @@
   <body>
     <h1>Towers Of Hanoi</h1>
     <hr/>
-      <div id="top-row" data-row="top" class="red row" onclick="selectRow(this)"></div>
-      <div id="middle-row" data-row="middle" class="yellow row" onclick="selectRow(this)"></div>
-      <div id="bottom-row" class="green row" data-row="bottom" onclick="selectRow(this)">
-        <div id="4" data-size="4" data-color="yellow" class="stone" ></div>
-        <div id="3" data-size="3" data-color="red" class="stone" ></div>
-        <div id="2" data-size="2" data-color="green" class="stone" ></div>
-        <div id="1" data-size="1" data-color="blue" class="stone" ></div>
+      <div ondrop="dropStone(event)" ondragover="allowDrop(event)" ondragleave="pickUpStone(event)" id="c" data-row="top" class="red row" onclick="selectRow(this)"></div>
+      <div ondrop="dropStone(event)" ondragover="allowDrop(event)" ondragleave="pickUpStone(event)" id="b" data-row="middle" class="yellow row" onclick="selectRow(this)"></div>
+      <div ondrop="dropStone(event)" ondragover="allowDrop(event)" ondragleave="pickUpStone(event)" id="a" class="green row" data-row="bottom" onclick="selectRow(this)">
+        <div id="4" draggable="true" ondragstart="drag(event)" data-size="4" data-color="yellow" class="stone" ></div>
+        <div id="3" draggable="true" ondragstart="drag(event)" data-size="3" data-color="red" class="stone" ></div>
+        <div id="2" draggable="true" ondragstart="drag(event)" data-size="2" data-color="green" class="stone" ></div>
+        <div id="1" draggable="true" ondragstart="drag(event)" data-size="1" data-color="blue" class="stone" ></div>
       </div>
     <hr/>
 
@@ -24,3 +24,4 @@
 
 
 
+ 

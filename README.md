@@ -6,6 +6,39 @@
 
 ## JavaScript 211 Project: Towers of Hanoi
 
+
+# Code Planning!!!
+
+# 1. MAIN.JS
+
+# Look at the test and see what needs to pass.
+
+# Start with understanding what moves are legal and which are not and how I need to implement that
+
+# create a if else statement on what makes a move legal which means it needs to allow the move if the element you are moving is -1 or more in length. and if not dont allow
+
+# Use .pop in the movePeice function to move the moved peice out of the stacks array. Then use .push which will add the selected element in the new stack. and if its invalid console log it.
+
+# the check for win function needs to check if stack b or stack c is equal to 4 in length and if they are console log winner and return true, if not return false.
+
+# Create at least 3 extra test to your file and make sure they are working
+
+# 2. INDEX.JS & HTML
+
+# Add the stack to the top of your file.
+
+# Make the stones draggable in the html as well as add a ondragstart to the stones.
+
+# 
+
+#
+
+#
+
+#
+
+
+
 ## Overview
 
 * [Towers of Hanoi](https://en.wikipedia.org/wiki/Tower_of_Hanoi) is a simple logic game involving three stacks. The first stack has four (or more) blocks, each one bigger than the next, stacked like a pyramid. The point of the game is to move the blocks from one stack and arrange them in the same order into another stack, but never placing a larger block onto a smaller block. You can play the game [here](http://vornlocher.de/tower.html) to get an idea.
