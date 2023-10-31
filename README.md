@@ -29,13 +29,13 @@
 
 # Make the stones draggable in the html as well as add a ondragstart to the stones.
 
-# 
+# Set your drag and drop functions so your data transfers, add event.prevent default on your allow drop function
 
-#
+# for the PickUpStone and DropStone function we need to Set our rowIDs and stoneIds as a function, Allow droping the stone if the stone your are moving has a smaller data-size number in the html. And we will create functions called stoneSize for the selected moving dics and endDiskSize for the last stone that was place on that row .
 
-#
+# create a function for The Stones and for the rows where you can add your event listeners that are called from the html.
 
-#
+# Use the same concept for the checkForWin as you did on main.js. Check to see if Row B or Row C is equal to 4 with their child element count and if so make a window alert to announce they won.
 
 
 
