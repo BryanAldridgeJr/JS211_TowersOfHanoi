@@ -123,7 +123,7 @@ if (typeof describe === 'function') {
         b: [],
         c: [4, 3, 2, 1]
       };
-      assert.equal(isLegal('a', 'c'), true);
+      assert.equal(isLegal('c', 'a'), true);
     });
   });
   describe('#checkForWin()', () => {
