@@ -31,7 +31,7 @@
 
 # Set your drag and drop functions so your data transfers, add event.prevent default on your allow drop function
 
-# for the PickUpStone and DropStone function we need to Set our rowIDs and stoneIds as a function, Allow droping the stone if the stone your are moving has a smaller data-size number in the html. And we will create functions called stoneSize for the selected moving dics and endDiskSize for the last stone that was place on that row .
+# for the PickUpStone and DropStone function we need to Set our rowIDs and stoneIds as a function, Allow droping the stone if the stone your are moving has a smaller data-size number in the html. And we will create functions called stoneSize for the selected moving dics and endDiskSize for the last stone that was place on that row . Then use those functions to check if a move is legal or not.
 
 # create a function for The Stones and for the rows where you can add your event listeners that are called from the html.
 
